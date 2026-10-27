@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Looptools: Small tasks. Sorted.</title>
+<meta name="description" content="Free, private PDF tools in your browser: merge, split, compress, sign, convert and more. Your files are not uploaded.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Ccircle cx='48' cy='48' r='46' fill='%231B1E2A' stroke='%232A2E3D'/%3E%3Cpath d='M30 48c0-9 7-16 16-16s16 7 16 16' fill='none' stroke='%23E8A33D' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M66 48c0 9-7 16-16 16s-16-7-16-16' fill='none' stroke='%23F5F3EC' stroke-width='4' stroke-linecap='round' opacity='.85'/%3E%3Ccircle cx='30' cy='48' r='3.5' fill='%23E8A33D'/%3E%3Ccircle cx='66' cy='48' r='3.5' fill='%23F5F3EC'/%3E%3C/svg%3E">
+<meta property="og:title" content="Looptools: Small tasks. Sorted.">
+<meta property="og:description" content="Free, private PDF tools that run in your browser.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<style>
+:root{--bg:#f4f3ee;--pn:#fff;--tx:#12141c;--mu:#6c6f7a;--bd:#d9d7cf;--ac:#e8a33d;--soft:#ebe9e1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101218;--pn:#171a22;--tx:#f5f3ec;--mu:#9195a6;--bd:#2a2e3d;--soft:#1e212b}}
+:root[data-theme="dark"]{--bg:#101218;--pn:#171a22;--tx:#f5f3ec;--mu:#9195a6;--bd:#2a2e3d;--soft:#1e212b}
+*{box-sizing:border-box}html,body{margin:0}[hidden]{display:none!important}
+body{font:15px/1.55 "Helvetica Neue",Helvetica,Arial,Inter,system-ui,sans-serif;background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased}
+.i{width:1em;height:1em;flex:none;display:block;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* sidebar stays fixed while the page scrolls */
+.app{display:grid;grid-template-columns:256px 1fr;align-items:start;min-height:100vh}
+nav{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--pn);border-right:1px solid var(--bd);padding:20px 14px;display:flex;flex-direction:column;gap:2px}
+main{padding:28px 48px 48px;max-width:1080px;width:100%}
+.top{display:flex;justify-content:flex-end}
+
+nav a.brand{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;letter-spacing:-.03em;color:var(--tx);margin:0 6px 18px;padding:0;background:none;box-shadow:none;text-decoration:none}
+nav a.brand b{color:var(--ac);font-weight:800}
+.logo{width:38px;height:38px;flex:none}
+nav a{display:flex;align-items:center;gap:12px;padding:9px 10px;font-weight:600;font-size:14px;color:var(--mu);text-decoration:none;border-radius:8px}
+nav a .i{width:19px;height:19px}
+nav a:hover{background:var(--soft);color:var(--tx)}
+nav a.on{color:var(--tx);font-weight:800;background:var(--soft);box-shadow:inset 3px 0 0 var(--ac)}
+nav h4.cat{margin:22px 10px 6px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mu)}
+.badge{margin-top:auto;font-size:12px;color:var(--mu);padding:12px 4px 0;border-top:2px solid var(--tx)}
+.badge a{display:inline;padding:0;color:var(--tx);font-weight:700;text-decoration:underline;background:none;box-shadow:none}
+
+main h1{font-size:clamp(32px,5vw,56px);line-height:1;letter-spacing:-.04em;font-weight:800;margin:10px 0 12px}
+main p.d{margin:0 0 24px;color:var(--mu);max-width:60ch}
+main h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:32px 0 10px;color:var(--mu)}
+
+/* soft gel button */
+.btn{font:inherit;font-weight:700;font-size:14px;padding:10px 18px;border-radius:12px;cursor:pointer;color:#12141c;border:1px solid #b97a1c;
+ background:linear-gradient(180deg,#fad286 0%,#eeb04a 48%,#e29a2c 52%,#e8a33d 100%);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -3px 6px rgba(150,85,0,.28),0 4px 10px rgba(232,163,61,.32);
+ transition:transform .08s,box-shadow .12s,filter .12s}
+.btn:hover{filter:brightness(1.05)}
+.btn:active{transform:translateY(1px);box-shadow:inset 0 2px 5px rgba(150,85,0,.35),0 1px 3px rgba(232,163,61,.3)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--ac)!important;outline-offset:2px}
+
+/* search + tiles */
+input[type=search].search{width:100%;font:inherit;font-size:22px;font-weight:700;padding:14px 0;border:0;border-bottom:2px solid var(--tx);border-radius:0;background:transparent;color:var(--tx)}
+input[type=search].search::placeholder{color:var(--mu);font-weight:500}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px 28px}
+.tile{display:flex;flex-direction:column;gap:4px;padding:16px 0 20px;border-top:2px solid var(--tx);color:var(--tx);text-decoration:none}
+.tile .ic{font-size:28px;margin-bottom:12px;display:block}
+.tile b{font-size:16px;font-weight:800;letter-spacing:-.01em}.tile small{color:var(--mu)}
+a.tile:hover{border-top-color:var(--ac)}a.tile:hover .ic{color:var(--ac)}
+.none{color:var(--mu)}
+
+.about{margin-top:36px;color:var(--mu);max-width:70ch}
+.about h2{color:var(--tx);font-size:20px;letter-spacing:-.02em;margin:0 0 8px}
+.about a{color:var(--tx);font-weight:700}
+footer{margin-top:40px;padding-top:14px;border-top:2px solid var(--tx);font-size:13px;color:var(--mu);display:flex;gap:16px;flex-wrap:wrap}
+footer a{color:var(--mu)}footer a:hover{color:var(--tx)}
+
+@media(max-width:760px){
+ .app{grid-template-columns:1fr}
+ nav{position:sticky;top:0;z-index:5;height:auto;flex-direction:row;overflow-x:auto;overflow-y:hidden;border-right:0;border-bottom:1px solid var(--bd);align-items:center;padding:10px}
+ nav a.brand{margin:0 8px 0 0}nav a.brand span{display:none}
+ .badge,nav h4.cat{display:none}nav a{white-space:nowrap}
+ main{padding:20px 18px 40px}
+}
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></symbol>
+<symbol id="i-merge" viewBox="0 0 24 24"><path d="M6 3v5a6 6 0 0 0 6 6M18 3v5a6 6 0 0 1-6 6M12 14v7M9 18l3 3 3-3"/></symbol>
+<symbol id="i-split" viewBox="0 0 24 24"><path d="M12 3v6M12 9L5 20M12 9l7 11"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+<symbol id="i-shrink" viewBox="0 0 24 24"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></symbol>
+<symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+<symbol id="i-stamp" viewBox="0 0 24 24"><path d="M8 3h8v7l3 4v3H5v-3l3-4zM4 21h16"/></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l1-5L16 4l4 4L9 19zM14 6l4 4"/></symbol>
+<symbol id="i-crop" viewBox="0 0 24 24"><path d="M6 2v16h16M2 6h16v16"/></symbol>
+<symbol id="i-text" viewBox="0 0 24 24"><path d="M5 5h14M12 5v15M9 20h6"/></symbol>
+<symbol id="i-filetext" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM9 12h7M9 16h7"/></symbol>
+</defs></svg>
+
+<div class="app">
+<nav id="nav" aria-label="Main"></nav>
+<main>
+<div class="top"><button class="btn" id="th" aria-label="Toggle theme">Theme</button></div>
+<h1>Looptools</h1>
+<p class="d">Small tasks. Sorted. Free PDF tools that run in your browser, with no uploads and no account.</p>
+<input class="search" id="q" type="search" placeholder="What do you need to do?" aria-label="Search tools">
+<h3>PDF tools</h3>
+<div class="tiles" id="tiles">
+<a class="tile" data-ic="merge" data-kw="join combine append" href="/merge-pdf/"><span class="ic"></span><b>Merge PDF</b><small>Combine PDFs and pick pages from each.</small></a>
+<a class="tile" data-ic="split" data-kw="divide extract range zip" href="/split-pdf/"><span class="ic"></span><b>Split PDF</b><small>Extract page ranges or split into many files.</small></a>
+<a class="tile" data-ic="grid" data-kw="reorder rotate delete duplicate blank" href="/organize-pdf-pages/"><span class="ic"></span><b>Organize Pages</b><small>Reorder, rotate, delete and add pages.</small></a>
+<a class="tile" data-ic="shrink" data-kw="reduce smaller size" href="/compress-pdf/"><span class="ic"></span><b>Compress PDF</b><small>Shrink file size with three levels.</small></a>
+<a class="tile" data-ic="swap" data-kw="jpg png image convert" href="/pdf-image-converter/"><span class="ic"></span><b>PDF ⇄ Images</b><small>PDF to JPG or PNG, and images to PDF.</small></a>
+<a class="tile" data-ic="stamp" data-kw="page numbers bates stamp" href="/watermark-pdf/"><span class="ic"></span><b>Watermark &amp; Numbers</b><small>Add a watermark, page numbers or Bates numbers.</small></a>
+<a class="tile" data-ic="pen" data-kw="signature annotate highlight whiteout" href="/edit-sign-pdf/"><span class="ic"></span><b>Edit &amp; Sign</b><small>Add text, highlight, draw and sign.</small></a>
+<a class="tile" data-ic="crop" data-kw="margins a4 letter page size" href="/crop-resize-pdf/"><span class="ic"></span><b>Crop / Resize</b><small>Trim margins and resize to A4 or Letter.</small></a>
+<a class="tile" data-ic="text" data-kw="write document txt" href="/text-to-pdf/"><span class="ic"></span><b>Text → PDF</b><small>Turn typed or pasted text into a PDF.</small></a>
+<a class="tile" data-ic="filetext" data-kw="copy extract txt" href="/pdf-to-text/"><span class="ic"></span><b>PDF → Text</b><small>Extract selectable text from a PDF.</small></a>
+</div>
+<p class="none" id="none" hidden>No tool matches that. Try “merge”, “compress” or “sign”.</p>
+<section class="about"><h2>Private by design</h2><p>Looptools processes your files in your browser. This site does not upload them. This home page makes no network requests of its own.</p></section>
+<footer><span>Looptools · Small tasks. Sorted.</span><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></footer>
+</main>
+</div>
+<script>
+(function(){
+ var $=function(s,e){return (e||document).querySelector(s)},all=function(s,e){return Array.prototype.slice.call((e||document).querySelectorAll(s))};
+ var ico=function(n){return '<svg class="i" aria-hidden="true"><use href="#i-'+n+'"/></svg>'};
+ var tiles=all('#tiles .tile');
+ tiles.forEach(function(t){$('.ic',t).innerHTML=ico(t.dataset.ic)});
+
+ /* sidebar */
+ var nav=$('#nav');
+ nav.innerHTML='<a href="/" class="brand" aria-label="Looptools home"><svg class="logo" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="48" cy="48" r="46" fill="#1B1E2A" stroke="#2A2E3D"/><path d="M30 48c0-9 7-16 16-16s16 7 16 16" fill="none" stroke="#E8A33D" stroke-width="4" stroke-linecap="round"/><path d="M66 48c0 9-7 16-16 16s-16-7-16-16" fill="none" stroke="#F5F3EC" stroke-width="4" stroke-linecap="round" opacity="0.85"/><circle cx="30" cy="48" r="3.5" fill="#E8A33D"/><circle cx="66" cy="48" r="3.5" fill="#F5F3EC"/></svg><span>Loop<b>tools</b></span></a>'
+  +'<a href="/" class="on">'+ico('home')+'<span>Home</span></a><h4 class="cat">PDF</h4>';
+ tiles.forEach(function(t){
+  var a=document.createElement('a');a.href=t.getAttribute('href');
+  a.innerHTML=ico(t.dataset.ic)+'<span></span>';$('span',a).textContent=$('b',t).textContent;nav.appendChild(a)});
+ var b=document.createElement('div');b.className='badge';
+ b.innerHTML='Your files are processed in your browser and are not uploaded by this site. <a href="/privacy/">Details</a>';nav.appendChild(b);
+
+ /* search */
+ $('#q').addEventListener('input',function(){
+  var q=this.value.trim().toLowerCase(),n=0;
+  tiles.forEach(function(t){var m=!q||(t.textContent+' '+t.dataset.kw).toLowerCase().indexOf(q)>-1;t.hidden=!m;if(m)n++});
+  $('#none').hidden=n>0});
+
+ /* theme */
+ var KEY='looptools-theme',r=document.documentElement;
+ try{var s=localStorage.getItem(KEY);if(s==='dark'||s==='light')r.dataset.theme=s}catch(e){}
+ $('#th').addEventListener('click',function(){
+  var dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+  try{localStorage.setItem(KEY,r.dataset.theme)}catch(e){}});
+})();
+</script>
+<noscript><p style="padding:24px">Looptools needs JavaScript. It offers free, private PDF tools that run in your browser: merge, split, compress, sign, convert and more.</p></noscript>
+</body></html>
